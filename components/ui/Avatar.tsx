@@ -33,7 +33,7 @@ const Avatar = ({
         <View
             style={{ width: size, height: size }}
             className="items-center justify-center rounded-full bg-gray-500">
-            <Text style={{ fontSize: size / 2 }} className="font-bold text-white">
+            <Text style={{ fontSize: size / 2 }} className="font-bold text-tertiary">
                 {initials}
             </Text>
         </View>

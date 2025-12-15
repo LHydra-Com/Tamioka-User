@@ -20,15 +20,15 @@ export default function Button({
     const base = 'px-4 py-3 rounded-xl items-center justify-center';
 
     const variants: Record<ButtonVariant, string> = {
-        primary: 'bg-blue-600',
-        secondary: 'bg-gray-700 dark:bg-neutral-700',
-        outline: 'border border-gray-400 dark:border-neutral-600',
+        primary: 'bg-primary',
+        secondary: 'bg-secondary',
+        outline: 'border border-secondary',
     };
 
     const textVariants: Record<ButtonVariant, string> = {
-        primary: 'text-white',
-        secondary: 'text-white',
-        outline: 'text-gray-800 dark:text-gray-100',
+        primary: 'text-tertiary',
+        secondary: 'text-tertiary',
+        outline: 'text-secondary',
     };
 
     return (

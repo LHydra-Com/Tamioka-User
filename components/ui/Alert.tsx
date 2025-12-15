@@ -1,4 +1,5 @@
-import { Text, Pressable, Animated, SafeAreaView } from 'react-native';
+import { Text, Pressable, Animated } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import { ReactNode, useEffect, useRef, useState } from 'react';
 
 interface AlertProps {
@@ -67,7 +68,7 @@ export default function Alert({
                         onClose?.();
                     }}
                     className="ml-4 rounded bg-gray-300 px-2 py-1 dark:bg-neutral-700">
-                    <Text className="text-gray-700 dark:text-gray-100">×</Text>
+                    <Text className="text-gray-700 dark:text-tertiary">×</Text>
                 </Pressable>
             </Animated.View>
         </SafeAreaView>

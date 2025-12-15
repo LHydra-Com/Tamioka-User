@@ -59,12 +59,12 @@ export const ScreenContent = ({ title, path, children }: ScreenContentProps) => 
   };
 
   return (
-    <View className="flex-1 items-center justify-center bg-green-300">
+    <View className="flex-1 items-center justify-center bg-primary dark:bg-tertiary">
       <Text className={styles.title}>{title}</Text>
       <View className={styles.separator} />
 
       <EditScreenInfo path={path} />
-      <Avatar size={50} imageUri="https://example.com/avatar.jpg" borderColor="border-green-500" />
+      <Avatar size={50} imageUri="https://example.com/avatar.jpg" borderColor="border-secondary" />
 
       <Button title="Show Alert" onPress={() => setShowAlert(true)} />
 
@@ -83,7 +83,7 @@ export const ScreenContent = ({ title, path, children }: ScreenContentProps) => 
       <Toggle value={switchValue} onValueChange={setSwitchValue} className="mt-4" />
 
       <View className="flex-row items-center mt-4">
-        <Text className="text-base mr-2 text-black dark:text-white">Dark Mode</Text>
+        <Text className="text-base mr-2 text-black dark:text-tertiary">Dark Mode</Text>
         <Toggle value={mode === 'dark'} onValueChange={() => toggleMode()} />
       </View>
 

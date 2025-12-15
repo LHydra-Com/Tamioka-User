@@ -52,7 +52,7 @@ export default function ActionSheet({
             {/* Action Sheet container */}
             <Animated.View
                 style={{ transform: [{ translateY }] }}
-                className="absolute bottom-0 left-0 right-0 rounded-t-xl bg-white p-4 dark:bg-neutral-900">
+                className="absolute bottom-0 left-0 right-0 rounded-t-xl bg-tertiary p-4 dark:bg-neutral-900">
                 {options.map((opt, idx) => (
                     <Pressable
                         key={idx}
@@ -63,7 +63,7 @@ export default function ActionSheet({
                         className={`mb-2 rounded-lg p-4 ${opt.destructive ? 'bg-red-100 dark:bg-red-900/40' : 'bg-gray-100 dark:bg-neutral-800'
                             }`}>
                         <Text
-                            className={`text-center text-base ${opt.destructive ? 'text-red-700 dark:text-red-200' : 'text-black dark:text-white'
+                            className={`text-center text-base ${opt.destructive ? 'text-red-700 dark:text-red-200' : 'text-black dark:text-tertiary'
                                 }`}>
                             {opt.label}
                         </Text>
@@ -74,7 +74,7 @@ export default function ActionSheet({
                 <Pressable
                     onPress={onClose}
                     className="mt-2 rounded-lg bg-gray-200 p-4 dark:bg-neutral-800">
-                    <Text className="text-center font-bold text-black dark:text-white">{cancelText}</Text>
+                    <Text className="text-center font-bold text-black dark:text-tertiary">{cancelText}</Text>
                 </Pressable>
             </Animated.View>
         </View>

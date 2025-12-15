@@ -21,9 +21,9 @@ export function Modal({ visible, title, children, onClose, className = '' }: Mod
                 {/* Modal content */}
                 <Pressable
                     onPress={(e) => e.stopPropagation()} // prevent closing when tapping inside
-                    className={`w-4/5 rounded-xl bg-white p-6 dark:bg-neutral-900 ${className}`}>
+                    className={`w-4/5 rounded-xl bg-tertiary p-6 dark:bg-neutral-900 ${className}`}>
                     {title && (
-                        <Text className="mb-4 text-lg font-bold text-black dark:text-white">{title}</Text>
+                        <Text className="mb-4 text-lg font-bold text-black dark:text-tertiary">{title}</Text>
                     )}
                     {children}
                     <Pressable

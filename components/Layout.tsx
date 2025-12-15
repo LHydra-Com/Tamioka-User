@@ -4,14 +4,24 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { ActionSheetProvider } from '@expo/react-native-action-sheet';
 import { ThemeProvider } from '../lib/theme';
 
+const ThemedRoot = ({ children }: { children: React.ReactNode }) => {
+    // const { mode } = useTheme();
+    // const themeClass = mode === 'dark' ? 'dark' : '';
+
+    return (
+        <SafeAreaView className={` flex-1 `}>
+            {children}
+            {/* <StatusBar style={mode === 'dark' ? 'light' : 'dark'} /> */}
+            <StatusBar style="auto" />
+        </SafeAreaView>
+    );
+};
+
 export const Layout = ({ children }: { children: React.ReactNode }) => {
     return (
         <ActionSheetProvider>
             <ThemeProvider>
-                <SafeAreaView className="flex-1 bg-white dark:bg-neutral-950">
-                    {children}
-                    <StatusBar style="auto" />
-                </SafeAreaView>
+                <ThemedRoot>{children}</ThemedRoot>
             </ThemeProvider>
         </ActionSheetProvider>
     );

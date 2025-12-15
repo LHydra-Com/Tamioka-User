@@ -23,13 +23,13 @@ export default function Checkbox({
             <View
                 className={`mr-2 h-5 w-5 items-center justify-center rounded border 
                     ${checked
-                        ? 'border-blue-600 bg-blue-600'
-                        : 'border-gray-400 bg-white dark:border-neutral-600 dark:bg-neutral-900'
+                        ? 'border-secondary bg-secondary'
+                        : 'border-gray-400 bg-tertiary dark:border-neutral-600 dark:bg-neutral-900'
                     }`}>
                 {checked && <Check color="white" size={14} />}
             </View>
 
-            {label && <Text className="text-base text-black dark:text-white">{label}</Text>}
+            {label && <Text className="text-base text-black dark:text-tertiary">{label}</Text>}
         </Pressable>
     );
 }
