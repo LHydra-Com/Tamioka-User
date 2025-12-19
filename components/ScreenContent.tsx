@@ -3,7 +3,6 @@ import { View } from 'react-native';
 import Text from './ui/Text';
 import { useActionSheet } from '@expo/react-native-action-sheet';
 
-import { EditScreenInfo } from './EditScreenInfo';
 import Button from './ui/Button';
 import Checkbox from './ui/Checkbox';
 import Card from './ui/Card';
@@ -59,11 +58,10 @@ export const ScreenContent = ({ title, path, children }: ScreenContentProps) => 
   };
 
   return (
-    <View className="flex-1 items-center justify-center bg-primary dark:bg-tertiary">
+    <View className="flex-1 items-center justify-center bg-green-500 dark:bg-tertiary">
       <Text className={styles.title}>{title}</Text>
       <View className={styles.separator} />
 
-      <EditScreenInfo path={path} />
       <Avatar size={50} imageUri="https://example.com/avatar.jpg" borderColor="border-secondary" />
 
       <Button title="Show Alert" onPress={() => setShowAlert(true)} />

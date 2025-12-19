@@ -9,7 +9,7 @@ const ThemedRoot = ({ children }: { children: React.ReactNode }) => {
     // const themeClass = mode === 'dark' ? 'dark' : '';
 
     return (
-        <SafeAreaView className={` flex-1 `}>
+        <SafeAreaView edges={['top', 'bottom', 'left', 'right']} className={` flex-1 py-4`}>
             {children}
             {/* <StatusBar style={mode === 'dark' ? 'light' : 'dark'} /> */}
             <StatusBar style="auto" />

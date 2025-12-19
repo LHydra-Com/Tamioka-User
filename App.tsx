@@ -1,25 +1,19 @@
 // App.tsx
-import React from 'react';
+import React, { useState } from 'react';
+import Onboarding from './screens/Onboarding';
+import AuthFlow from './screens/AuthFlow';
 import { ScreenContent } from './components/ScreenContent';
 import { Layout } from './components/Layout';
 import './global.css';
-import { useTheme, ThemeProvider } from './lib/theme';
-
-function AppContent() {
-  const { mode } = useTheme();
-  return (
-    <div className={mode === 'dark' ? 'dark' : ''} style={{ minHeight: '100vh' }}>
-      <Layout>
-        <ScreenContent title="Home" path="App.tsx" />
-      </Layout>
-    </div>
-  );
-}
 
 export default function App() {
+  const [stage, setStage] = useState<'onboarding' | 'auth' | 'home'>('onboarding');
+
   return (
-    <ThemeProvider>
-      <AppContent />
-    </ThemeProvider>
+    <Layout>
+      {stage === 'onboarding' && <Onboarding onFinish={() => setStage('auth')} />}
+      {stage === 'auth' && <AuthFlow onComplete={() => setStage('home')} />}
+      {stage === 'home' && <ScreenContent title="Home" path="App.tsx" />}
+    </Layout>
   );
 }
