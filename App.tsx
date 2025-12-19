@@ -2,8 +2,9 @@
 import React, { useState } from 'react';
 import Onboarding from './screens/Onboarding';
 import AuthFlow from './screens/AuthFlow';
-import { ScreenContent } from './components/ScreenContent';
 import { Layout } from './components/Layout';
+import DashboardTabs from './components/DashboardTabs';
+import { NavigationContainer } from '@react-navigation/native';
 import './global.css';
 
 export default function App() {
@@ -13,7 +14,11 @@ export default function App() {
     <Layout>
       {stage === 'onboarding' && <Onboarding onFinish={() => setStage('auth')} />}
       {stage === 'auth' && <AuthFlow onComplete={() => setStage('home')} />}
-      {stage === 'home' && <ScreenContent title="Home" path="App.tsx" />}
+      {stage === 'home' && (
+        <NavigationContainer>
+          <DashboardTabs />
+        </NavigationContainer>
+      )}
     </Layout>
   );
 }

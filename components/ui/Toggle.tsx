@@ -21,13 +21,12 @@ export function Toggle({ value, onValueChange, className = '' }: ToggleProps) {
     return (
         <Pressable
             onPress={() => onValueChange(!value)}
-            className={`h-6 w-12 rounded-full p-1 ${value ? 'bg-secondary' : 'bg-gray-300 dark:bg-neutral-700'
-                } ${className}`}>
+            className={`h-6 w-12 rounded-full p-1 ${value ? 'bg-secondary' : 'bg-gray-300 dark:bg-neutral-700'} ${className}`}>
             <Animated.View
                 style={{
                     transform: [{ translateX }],
                 }}
-                className="h-4 w-4 rounded-full bg-tertiary"
+                className={`h-4 w-4 rounded-full ${value ? 'bg-tertiary' : 'bg-white dark:bg-neutral-800'}`}
             />
         </Pressable>
     );

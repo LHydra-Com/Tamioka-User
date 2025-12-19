@@ -1,4 +1,5 @@
 import { Pressable, Text } from 'react-native';
+import { useTheme } from '../../lib/theme';
 
 export type ButtonVariant = 'primary' | 'secondary' | 'outline';
 
@@ -17,12 +18,14 @@ export default function Button({
     disabled = false,
     className = '',
 }: ButtonProps) {
+    const { mode } = useTheme();
+
     const base = 'px-4 py-3 rounded-xl items-center justify-center';
 
     const variants: Record<ButtonVariant, string> = {
-        primary: 'bg-primary',
+        primary: `bg-primary ${mode === 'dark' ? 'dark:bg-neutral-800' : ''}`,
         secondary: 'bg-secondary',
-        outline: 'border border-secondary',
+        outline: `border border-secondary ${mode === 'dark' ? 'dark:border-neutral-600' : ''}`,
     };
 
     const textVariants: Record<ButtonVariant, string> = {
