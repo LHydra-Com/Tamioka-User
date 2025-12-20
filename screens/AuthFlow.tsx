@@ -1,5 +1,5 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react';
-import { KeyboardAvoidingView, Platform, TextInput, View, Pressable, ScrollView } from 'react-native';
+import { KeyboardAvoidingView, Platform, TextInput, View, Pressable, ScrollView, Image } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import Text from '../components/ui/Text';
 import Button from '../components/ui/Button';
@@ -146,9 +146,10 @@ export default function AuthFlow({ onComplete }: { onComplete?: () => void }) {
                     {step === 'welcome' && (
                         <View className="flex-1">
                             <View className="flex-1 items-center justify-center">
-                                <Text variant="title" weight="bold" size={34}>
+                                <Image source={require('../assets/logo.png')} style={{ width: 96, height: 96, marginBottom: 12 }} />
+                                {/* <Text variant="title" weight="bold" size={34}>
                                     TAIMAKO
-                                </Text>
+                                </Text> */}
                             </View>
 
                             <View className="pb-10">
@@ -176,7 +177,7 @@ export default function AuthFlow({ onComplete }: { onComplete?: () => void }) {
 
                                 <Button
                                     title="Continue with Google"
-                                    onPress={() => { }}
+                                    onPress={() => onComplete?.()}
                                     variant="outline"
                                     className="rounded-2xl"
                                 />
@@ -196,9 +197,10 @@ export default function AuthFlow({ onComplete }: { onComplete?: () => void }) {
                     {step === 'enter' && (
                         <View className="flex-1">
                             <View className="flex-1 items-center justify-center">
-                                <Text variant="title" weight="bold" size={34}>
+                                <Image source={require('../assets/logo.png')} style={{ width: 96, height: 96, marginBottom: 12 }} />
+                                {/* <Text variant="title" weight="bold" size={34}>
                                     TAIMAKO
-                                </Text>
+                                </Text> */}
                             </View>
 
                             <View className="pb-10">
@@ -258,9 +260,10 @@ export default function AuthFlow({ onComplete }: { onComplete?: () => void }) {
                     {step === 'code' && (
                         <View className="flex-1">
                             <View className="flex-1 items-center justify-center">
-                                <Text variant="title" weight="bold" size={34}>
+                                <Image source={require('../assets/logo.png')} style={{ width: 96, height: 96, marginBottom: 12 }} />
+                                {/* <Text variant="title" weight="bold" size={34}>
                                     TAIMAKO
-                                </Text>
+                                </Text> */}
                             </View>
 
                             <View className="pb-10">

@@ -2,14 +2,19 @@ import React from 'react';
 import { StatusBar } from 'expo-status-bar';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { ActionSheetProvider } from '@expo/react-native-action-sheet';
-import { ThemeProvider } from '../lib/theme';
+import { ThemeProvider, useTheme } from '../lib/theme';
 
 const ThemedRoot = ({ children }: { children: React.ReactNode }) => {
-    // const { mode } = useTheme();
+    const { mode } = useTheme();
     // const themeClass = mode === 'dark' ? 'dark' : '';
-
+    const backgroundColor = mode === 'dark' ? '#0a0a0a' : '#ffffff';
     return (
-        <SafeAreaView edges={['top', 'bottom', 'left', 'right']} className={` flex-1 py-4`}>
+        // <SafeAreaView edges={['top', 'bottom', 'left', 'right']} className={` flex-1 py-4`}>
+        <SafeAreaView
+            style={{ flex: 1, backgroundColor }}
+            className="py-4"
+        >
+            <StatusBar style={mode === 'dark' ? 'light' : 'dark'} />
             {children}
             {/* <StatusBar style={mode === 'dark' ? 'light' : 'dark'} /> */}
             <StatusBar style="auto" />

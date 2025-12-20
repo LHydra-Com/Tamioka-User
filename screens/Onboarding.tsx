@@ -52,15 +52,11 @@ export default function Onboarding({ onFinish }: { onFinish?: () => void }) {
     };
 
     const onSkip = () => {
-        scrollRef.current?.scrollTo({
-            x: (slides.length - 1) * width,
-            animated: true,
-        });
-        setIndex(slides.length - 1);
+        onFinish?.();
     };
 
     return (
-        <SafeAreaView className="flex-1 bg-sky-50">
+        <SafeAreaView className="flex-1 ">
             {/* Top bar */}
             <View className="px-6 pt-2">
                 <View className="h-10 flex-row items-center justify-end">

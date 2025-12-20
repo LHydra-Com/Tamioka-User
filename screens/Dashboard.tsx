@@ -5,6 +5,7 @@ import Avatar from '../components/ui/Avatar';
 import Text from '../components/ui/Text';
 import { Toggle } from '../components/ui/Toggle';
 import { useTheme } from '../lib/theme';
+import { useNavigation } from '@react-navigation/native';
 import { Bell, MapPin, Mic, Search, SlidersHorizontal, Star } from 'lucide-react-native';
 
 type SegmentKey = 'best' | 'recent' | 'favorites';
@@ -28,6 +29,7 @@ type JobCard = {
 export default function Dashboard() {
     const [segment, setSegment] = useState<SegmentKey>('recent');
     const { mode, toggleMode } = useTheme();
+    const navigation = useNavigation();
 
     const items = useMemo<JobCard[]>(
         () => [
@@ -83,13 +85,14 @@ export default function Dashboard() {
                         <View className="flex-row items-center">
                             <Toggle value={mode === 'dark'} onValueChange={() => toggleMode()} className="mr-3" />
 
-                            <Pressable
+                            {/* <Pressable
                                 accessibilityRole="button"
                                 accessibilityLabel="Notifications"
                                 className="h-11 w-11 items-center justify-center rounded-xl border border-zinc-800"
+                            // onPress={() => navigation.navigate('Notifications' as never)}
                             >
                                 <Bell size={18} />
-                            </Pressable>
+                            </Pressable> */}
                         </View>
                     </View>
 

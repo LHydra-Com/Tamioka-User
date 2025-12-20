@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Animated } from 'react-native';
+import { View, Animated, Platform } from 'react-native';
 import { useIsFocused } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Dashboard from '../screens/Dashboard';
@@ -25,7 +25,7 @@ function ProfileScreen() {
     );
 }
 
-function withAnimatedScreen<P>(Wrapped: React.ComponentType<P>) {
+function withAnimatedScreen<P extends object>(Wrapped: React.ComponentType<P>) {
     return (props: P) => {
         const focused = useIsFocused();
         const anim = React.useRef(new Animated.Value(focused ? 1 : 0)).current;
@@ -38,12 +38,20 @@ function withAnimatedScreen<P>(Wrapped: React.ComponentType<P>) {
             }).start();
         }, [focused, anim]);
 
-        const translateX = anim.interpolate({ inputRange: [0, 1], outputRange: [20, 0] });
-        const opacity = anim;
+        const translateX = anim.interpolate({
+            inputRange: [0, 1],
+            outputRange: [20, 0]
+        });
+
+        // Explicit interpolation for opacity to prevent native casting issues
+        const opacity = anim.interpolate({
+            inputRange: [0, 1],
+            outputRange: [0, 1]
+        });
 
         return (
             <Animated.View style={{ flex: 1, transform: [{ translateX }], opacity }}>
-                <Wrapped {...(props as P)} />
+                <Wrapped {...props} />
             </Animated.View>
         );
     };
@@ -65,17 +73,24 @@ export default function BottomTabs() {
                     left: 24,
                     right: 24,
                     bottom: 20,
-                    height: 42,
+                    height: 52, // Slightly increased height for better touch targets
                     borderRadius: 999,
                     marginHorizontal: 18,
                     backgroundColor: barBackground,
-                    elevation: 8,
-                    shadowColor: '#000',
-                    shadowOpacity: 0.12,
-                    shadowOffset: { width: 0, height: 8 },
-                    shadowRadius: 16,
+                    ...Platform.select({
+                        ios: {
+                            shadowColor: '#000',
+                            shadowOpacity: 0.12,
+                            shadowOffset: { width: 0, height: 8 },
+                            shadowRadius: 16,
+                        },
+                        android: {
+                            elevation: 8,
+                        },
+                    }),
                     alignItems: 'center',
                     justifyContent: 'center',
+                    borderTopWidth: 0, // Removes the default line on top of the tab bar
                 },
             }}
         >
@@ -83,7 +98,9 @@ export default function BottomTabs() {
                 name="Home"
                 component={withAnimatedScreen(Dashboard)}
                 options={{
-                    tabBarIcon: ({ focused }) => <AnimatedTabIcon Icon={Home} focused={focused} inactiveColor={inactiveColor} />,
+                    tabBarIcon: ({ focused }) => (
+                        <AnimatedTabIcon Icon={Home} focused={focused} inactiveColor={inactiveColor} />
+                    ),
                 }}
             />
 
@@ -91,7 +108,9 @@ export default function BottomTabs() {
                 name="Jobs"
                 component={withAnimatedScreen(JobsScreen)}
                 options={{
-                    tabBarIcon: ({ focused }) => <AnimatedTabIcon Icon={ClipboardList} focused={focused} inactiveColor={inactiveColor} />,
+                    tabBarIcon: ({ focused }) => (
+                        <AnimatedTabIcon Icon={ClipboardList} focused={focused} inactiveColor={inactiveColor} />
+                    ),
                 }}
             />
 
@@ -99,7 +118,9 @@ export default function BottomTabs() {
                 name="Profile"
                 component={withAnimatedScreen(ProfileScreen)}
                 options={{
-                    tabBarIcon: ({ focused }) => <AnimatedTabIcon Icon={User} focused={focused} inactiveColor={inactiveColor} />,
+                    tabBarIcon: ({ focused }) => (
+                        <AnimatedTabIcon Icon={User} focused={focused} inactiveColor={inactiveColor} />
+                    ),
                 }}
             />
         </Tab.Navigator>
@@ -123,15 +144,15 @@ function AnimatedTabIcon({ Icon, focused, inactiveColor }: IconProps) {
         }).start();
     }, [focused, anim]);
 
-    const translateY = anim.interpolate({ inputRange: [0, 1], outputRange: [0, -10] });
-    const scale = anim.interpolate({ inputRange: [0, 1], outputRange: [1, 1.06] });
-    const bubbleScale = anim.interpolate({ inputRange: [0, 1], outputRange: [0.95, 1] });
+    const translateY = anim.interpolate({ inputRange: [0, 1], outputRange: [0, -4] }); // Reduced movement for stability
+    const scale = anim.interpolate({ inputRange: [0, 1], outputRange: [1, 1.05] });
+    const bubbleScale = anim.interpolate({ inputRange: [0, 1], outputRange: [0.8, 1] });
 
     return (
-        <Animated.View style={{ width: 56, height: 56, alignItems: 'center', justifyContent: 'center', transform: [{ translateY }, { scale }] }}>
+        <Animated.View style={{ width: 50, height: 50, alignItems: 'center', justifyContent: 'center', transform: [{ translateY }, { scale }] }}>
             <Animated.View style={{ transform: [{ scale: bubbleScale }] }}>
                 {focused ? (
-                    <View className="h-12 w-12 items-center justify-center rounded-full bg-secondary">
+                    <View className="h-10 w-10 items-center justify-center rounded-full bg-secondary">
                         <Icon size={20} color="#FFFFFF" />
                     </View>
                 ) : (
